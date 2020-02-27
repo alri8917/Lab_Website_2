@@ -119,7 +119,22 @@ function loadStatsPage(){
 						
 					After setting all of the anchor tags, update the innerHTML of the dropdown menu.
 					As a note, the id for the dropdown menu is player_selector.
-		
+
+*/
+function loadPlayersPage(){
+	var playerSel = document.getElementById("player_selector");
+	var i;
+	for (i = 0; i < players.length; i++){
+		var anchor = document.createElement("a");
+		anchor.class = "dropdown-item";
+		anchor.href = "#";
+		anchor.onclick = switchPlayers(i);
+		anchor.innerHTML = players[i].name;
+		playerSel.appendChild(anchor);
+\	}
+}
+
+/*
 		switchPlayers(playerNum) method:
 			parameters: 
 				playerNum - The index of the football player in the players array.
@@ -141,6 +156,17 @@ function loadStatsPage(){
 					  avg_p_yards   - the average number of passing yards for the player's Buff career
 					  avg_r_yards   - the average number of rushing yards for the player's Buff career
 					  avg_rec_yards - the average number of receiving yards for the player's Buff career
-*/
-				
-
+*/				
+function switchPlayers(playerNum){
+	document.getElementById("p_year").innerHTML = player[playerNum].year;
+	document.getElementById("p_major").innerHTML = player[playerNum].major;
+	document.getElementById("g_played").innerHTML = player[playerNum].games_played;
+	document.getElementById("player_img").src = player[playerNum].img;
+	document.getElementById("player_img").alt = player[playerNum].alt;
+	document.getElementById("p_yards").innerHTML = player[playerNum].pass_yards;
+	document.getElementById("r_yards").innerHTML = player[playerNum].rushing_yards;
+	document.getElementById("rec_yards").innerHTML = player[playerNum].receiving_yards;
+	document.getElementById("avg_p_yards").innerHTML = player[playerNum].pass_yards / player[playerNum].games_played;
+	document.getElementById("avg_r_yards").innerHTML = player[playerNum].rushing_yards / player[playerNum].games_played;
+	document.getElementById("avg_rec_yards").innerHTML = player[playerNum].receiving_yards / player[playerNum].games_played;
+}
